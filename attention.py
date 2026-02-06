@@ -1,7 +1,0 @@
-plt.figure(figsize=(8,4))
-plt.imshow(attn[0].cpu().numpy(), aspect='auto', cmap='viridis')
-plt.colorbar()
-plt.title("Attention Weights Across Time Steps")
-plt.xlabel("Lookback Window")
-plt.ylabel("Forecast Horizon")
-plt.show()
