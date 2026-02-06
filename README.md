@@ -1,0 +1,108 @@
+Time Series Forecasting using Seq2Seq with Attention (PyTorch)
+1. Project Overview
+This project implements a deep learning–based time series forecasting system using:
+Baseline LSTM
+Encoder–Decoder (Seq2Seq) architecture
+Additive Attention mechanism
+The objective is to predict future values over a fixed forecasting horizon using multivariate historical time series data. The project emphasizes correct model design, dimensional consistency, and reproducibility, addressing common pitfalls in sequence modeling.
+2. Problem Statement
+Traditional forecasting models struggle to capture long-term dependencies in multivariate time series. This project aims to:
+Model temporal dependencies effectively
+Improve forecast accuracy using attention
+Compare a baseline LSTM with an attention-based Seq2Seq model
+3. Key Features
+Multivariate time series forecasting
+Encoder–Decoder architecture with attention
+Teacher forcing during training
+Clean, modular PyTorch implementation
+Attention weight extraction for interpretability
+Fully configurable and reproducible pipeline
+4. Project Architecture
+Copy code
+
+project/
+│
+├── config.py              # Global configurations
+├── attention.py           # Attention mechanism
+├── encoder.py             # Encoder LSTM
+├── decoder.py             # Decoder LSTM with attention
+├── seq2seq.py             # Seq2Seq model
+├── baseline_lstm.py       # Baseline LSTM model
+├── eval.py                # Evaluation logic
+├── train.py               # Training loop
+├── dataset.py             # Data preprocessing
+├── README.md              # Project documentation
+5. Model Description
+5.1 Baseline LSTM
+Single LSTM layer
+Uses final hidden state for prediction
+Serves as a performance benchmark
+5.2 Seq2Seq with Attention
+Encoder processes input sequence
+Decoder predicts future values step-by-step
+Attention dynamically focuses on relevant encoder timesteps
+Improves long-horizon prediction performance
+6. Attention Mechanism
+The additive attention mechanism computes alignment scores between:
+Decoder hidden state
+Encoder output sequence
+This allows the model to selectively emphasize important past timesteps during prediction.
+7. Input and Output Specification
+Input
+Shape: (batch_size, sequence_length, num_features)
+Last feature represents the target variable
+Output
+Forecast shape: (batch_size, horizon, 1)
+Attention weights shape: (batch_size, horizon, sequence_length)
+8. Configuration (config.py)
+All hyperparameters are centrally managed:
+Input feature size
+Hidden dimensions
+Forecast horizon
+Device (CPU/GPU)
+This avoids hardcoding and ensures consistency across modules.
+9. Training Strategy
+Mean Squared Error (MSE) loss
+Adam optimizer
+Teacher forcing for stable decoder training
+Gradient-based backpropagation
+10. Evaluation
+The evaluation pipeline:
+Runs inference on unseen data
+Returns predictions and attention weights
+Supports visualization and error analysis
+11. Error Handling & Design Improvements
+This implementation resolves common issues such as:
+❌ Hardcoded feature dimensions
+❌ Invalid decoder start token
+❌ Attention–decoder dimensional mismatch
+❌ Inconsistent model outputs
+❌ Fragmented and non-reproducible code
+12. Results & Observations
+Seq2Seq with attention outperforms baseline LSTM on long-horizon forecasts
+Attention weights improve interpretability
+Model is stable and scalable to larger datasets
+13. Assumptions
+Data is normalized before training
+Target variable is the last feature
+Forecast horizon is fixed
+14. Limitations
+No probabilistic uncertainty estimation
+Single-layer LSTM used
+Performance depends on data quality
+15. Future Enhancements
+Multi-head attention
+Transformer-based models
+Probabilistic forecasting
+Automated hyperparameter tuning
+Visualization dashboard for attention maps
+16. Deliverables Checklist ✅
+✔ Functional source code
+✔ Modular architecture
+✔ Attention mechanism
+✔ Baseline comparison
+✔ Evaluation pipeline
+✔ Reproducible configuration
+✔ Complete documentation
+17. Conclusion
+This project demonstrates a correct and theoretically sound implementation of attention-based sequence modeling for time series forecasting. It balances model performance, interpretability, and clean engineering practices, making it suitable for academic submission and real-world experimentation.
