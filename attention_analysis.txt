@@ -1,0 +1,2 @@
+Interpretation of Attention Weights
+The attention visualization reveals that the model consistently assigns higher weights to recent observations, particularly within the last 5 to 8 time steps, indicating strong short-term temporal dependence. For longer forecast horizons, the attention distribution becomes more diffuse, reflecting increased uncertainty and reliance on broader historical context. This behavior aligns with theoretical expectations of sequence-to-sequence temporal modeling.
